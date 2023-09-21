@@ -1,0 +1,26 @@
+apiVersion: container.gcp.upbound.io/v1beta1
+kind: NodePool
+metadata:
+  labels:
+    provider: GCP
+    resourcetype: nodegroup
+  name: nodepool-gcp-demo
+  annotations:
+     crossplane.io/paused: "false"
+spec:
+  forProvider:
+    nodeCount: 1
+    cluster: gke-gcp-demo
+    location: europe-west6
+    nodeLocations: 
+      - europe-west6-a
+      - europe-west6-b
+      - europe-west6-c
+    nodeConfig:
+      - machineType: e2-medium
+        oauthScopes:
+          - https://www.googleapis.com/auth/cloud-platform
+        preemptible: true
+        
+  providerConfigRef:
+    name: gcp-config

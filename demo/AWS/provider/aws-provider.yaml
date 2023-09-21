@@ -1,0 +1,51 @@
+#Family Providers
+# apiVersion: pkg.crossplane.io/v1
+# kind: Provider
+# metadata:
+#   name: provider-family-aws
+# spec:
+#   package: xpkg.upbound.io/upbound/provider-family-aws:v0.40.0
+
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-eks
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-eks:v0.40.0
+
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-networkfirewall
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-networkfirewall:v0.40.0
+
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-iam
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-iam:v0.40.0
+
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-aws-ec2
+spec:
+  package: xpkg.upbound.io/upbound/provider-aws-ec2:v0.40.0
+
+
+
+# apiVersion: pkg.crossplane.io/v1
+# kind: Provider
+# metadata:
+#   name: provider-aws
+#   labels:
+#     provider: AWS
+#     resourcetype: provider
+# spec:
+#   package: xpkg.upbound.io/upbound/provider-aws:v0.36.0

@@ -1,0 +1,21 @@
+apiVersion: crossplanedemo.com/v1alpha1
+kind: CompositeKubernetesCluster
+metadata:
+  name: compositecluster
+  labels:
+    provider: AWS
+    kind: compositecluster
+spec:
+  compositionRef:
+    # Possible values cluster-google, cluster-azure, cluster-aws
+    name: cluster-aws
+  parameters:
+    # Possible values small, medium, large
+    nodeSize: small
+    # minNodeCount: 2
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: kubeconfig
+  providerConfigRef:
+      name: aws-config
+  

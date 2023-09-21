@@ -1,0 +1,51 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: MainRouteTableAssociation
+metadata:
+  name: mainrta-aws-demo
+  annotations:
+    crossplane.io/paused: "false"
+  labels:
+    provider: AWS
+spec:
+  forProvider:
+    region: eu-west-1
+    routeTableIdRef:
+      name: rt-aws-demo
+    vpcIdRef:
+      name: vpc-aws-demo
+  providerConfigRef:
+    name: aws-config
+
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  labels:
+    testing.upbound.io/example-name: rta
+  name: rta-1a
+spec:
+  forProvider:
+    region: eu-west-1
+    routeTableIdRef:
+      name: rt-aws-demo
+    subnetIdRef:
+      name: subnet-aws-demo1
+  providerConfigRef:
+    name: aws-config
+
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTableAssociation
+metadata:
+  labels:
+    testing.upbound.io/example-name: rta
+  name: rta-1b
+spec:
+  forProvider:
+    region: eu-west-1
+    routeTableIdRef:
+      name: rt-aws-demo
+    subnetIdRef:
+      name: subnet-aws-demo2
+  providerConfigRef:
+    name: aws-config

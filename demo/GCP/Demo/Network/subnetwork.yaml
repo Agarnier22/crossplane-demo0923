@@ -1,0 +1,16 @@
+apiVersion: compute.gcp.upbound.io/v1beta1
+kind: Subnetwork
+metadata:
+  name: subnet-gcp-demo
+  labels:
+    provider: GCP
+    resourcetype: subnet
+spec:
+  forProvider:
+    region: europe-west6
+    ipCidrRange: "10.0.1.0/24"
+    privateIpGoogleAccess: true
+    networkRef:
+      name: network-gcp-demo
+  providerConfigRef:
+    name: gcp-config

@@ -1,0 +1,32 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Instance
+metadata:
+  name: ec2-aws-demo
+  annotations:
+     crossplane.io/paused: "false"
+  labels:
+    provider: AWS
+    resourcetype: instance
+spec:
+  forProvider:
+    region: eu-west-1
+    ami: ami-0d71ea30463e0ff8d
+    instanceType: t2.medium
+    tags:
+      Name: ec2-aws-demo
+      creator: aga
+      managed-by: crossplane
+    vpcSecurityGroupIdRefs:
+      - name: securitygroup-aws-demo
+    subnetIdRef:
+      name: subnet-aws-demo1
+  providerConfigRef:
+    name: aws-config
+  
+  writeConnectionSecretToRef:
+    name: ec2-conn
+    namespace: crossplane-system
+  publishConnectionDetailsTo:
+    name: ec2-conn
+    configRef:
+      name: default

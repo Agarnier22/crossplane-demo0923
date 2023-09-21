@@ -1,0 +1,26 @@
+apiVersion: container.gcp.upbound.io/v1beta1
+kind: Cluster
+metadata:
+  name: gke-gcp-demo
+  labels:
+    provider: GCP
+    resourcetype: cluster
+spec:
+  forProvider:
+    initialNodeCount: 1
+    removeDefaultNodePool: true
+    location: europe-west6
+    networkRef:
+      name: network-gcp-demo
+    subnetworkRef:
+      name: subnet-gcp-demo
+  writeConnectionSecretToRef:
+    name: kubeconfig-gke
+    namespace: crossplane-system
+  publishConnectionDetailsTo:
+    name: kubeconfig-gke
+    configRef:
+      name: default
+    
+  providerConfigRef:
+    name: gcp-config

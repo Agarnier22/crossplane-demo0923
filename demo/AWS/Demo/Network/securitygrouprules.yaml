@@ -1,0 +1,45 @@
+# apiVersion: ec2.aws.upbound.io/v1beta1
+# kind: SecurityGroupRule
+# metadata:
+#   name: securitygrouprule-egress
+#   annotations:
+#     crossplane.io/paused: "false"
+#     crossplane.io/external-name: securitygrouprule-egress
+#   labels:
+#     provider: AWS
+# spec:
+#   forProvider:
+#     cidrBlocks:
+#       - 127.0.0.0/8
+#     fromPort: -1
+#     toPort: -1
+#     protocol: all
+#     region: eu-west-1
+#     securityGroupIdRef:
+#       name: securitygroup-aws-demo
+#     type: egress
+#   providerConfigRef:
+#     name: aws-config
+
+# ---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  name: securitygrouprule-ingress
+  annotations:
+    crossplane.io/paused: "false"
+  labels:
+    provider: AWS
+spec:
+  forProvider:
+    cidrBlocks:
+      - 127.0.0.0/8
+    fromPort: -1
+    toPort: -1
+    protocol: all
+    region: eu-west-1
+    securityGroupIdRef:
+      name: securitygroup-aws-demo
+    type: ingress
+  providerConfigRef:
+    name: aws-config

@@ -1,0 +1,35 @@
+# Family Providers Azure
+# apiVersion: pkg.crossplane.io/v1
+# kind: Provider
+# metadata:
+#   name: provider-family-azure
+# spec:
+#   package: xpkg.upbound.io/upbound/provider-family-azure:v0.36.0
+
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-azure-containerservice
+spec:
+  package: xpkg.upbound.io/upbound/provider-azure-containerservice:v0.36.0
+
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
+metadata:
+  name: provider-azure-network
+spec:
+  package: xpkg.upbound.io/upbound/provider-azure-network:v0.36.0
+
+
+# Entire Provider Azure
+# apiVersion: pkg.crossplane.io/v1
+# kind: Provider
+# metadata:
+#   name: provider-azure
+#   labels:
+#     provider: Azure
+#     resourcetype: provider
+# spec:
+#   package: xpkg.upbound.io/upbound/provider-azure:v0.29.0

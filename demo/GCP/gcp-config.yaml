@@ -1,0 +1,15 @@
+apiVersion: gcp.upbound.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: gcp-config
+  labels:
+    provider: GCP
+    resourcetype: providerconfig
+spec:
+  projectID: crossplane-demo-378410
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: gcp-creds
+      key: creds

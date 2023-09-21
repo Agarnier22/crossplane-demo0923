@@ -1,0 +1,17 @@
+apiVersion: network.azure.upbound.io/v1beta1
+kind: SecurityGroup
+metadata :
+  name: securitygroup-azure-demo
+  labels:
+    provider: Azure
+    resourcetype: securitygroup
+spec:
+  forProvider:
+    location: North Europe
+    resourceGroupNameRef:
+      name: resourcegroup-azure-demo
+    tags:
+      name: securitygroup-azure-demo
+      environment: Dev
+  providerConfigRef:
+    name: azure-config

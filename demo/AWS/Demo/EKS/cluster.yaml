@@ -1,0 +1,34 @@
+apiVersion: eks.aws.upbound.io/v1beta1
+kind: Cluster
+metadata:
+  name: cluster-aws-demo
+  labels:
+    provider: AWS
+    resourcetype: cluster
+  annotations:
+    crossplane.io/paused: "false"
+    crossplane.io/external-name: cluster-aws-demo
+spec:
+  forProvider:
+    region: eu-west-1
+    roleArn: arn:aws:iam::741617576291:role/eks-cluster-role
+    vpcConfig:
+      - securityGroupIdRefs:
+        - name: securitygroup-aws-demo
+        subnetIdRefs:
+          - name: subnet-aws-demo1
+          - name: subnet-aws-demo2
+        # endpointPrivateAccess: true
+        # endpointPublicAccess: true
+    tags:
+      creator: aga
+      managed-by: crossplane
+  # writeConnectionSecretToRef:
+  #   name: kubeconfig-eks
+  #   namespace: crossplane-system
+  # publishConnectionDetailsTo:
+  #   name: kubeconfig-eks
+  #   configRef:
+  #     name: default
+  providerConfigRef:
+    name: aws-config

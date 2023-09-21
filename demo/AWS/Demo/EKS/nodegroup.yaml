@@ -1,0 +1,37 @@
+apiVersion: eks.aws.upbound.io/v1beta1
+kind: NodeGroup
+metadata:
+  name: ng-aws-demo
+  labels:
+    provider: AWS
+    resourcetype: nodegroup
+  annotations:
+    crossplane.io/paused: "false"
+    crossplane.io/external-name: ng-aws-demo
+  
+spec:
+  forProvider:
+    clusterNameRef:
+      name: cluster-aws-demo
+    region: eu-west-1
+    nodeRoleArn: arn:aws:iam::741617576291:role/eks-nodegroup-role
+    instanceTypes:
+      - t3.large
+    scalingConfig:
+      - desiredSize: 2
+        maxSize: 3
+        minSize: 1
+    remoteAccess:
+      - ec2SshKey: testkey
+    subnetIdRefs:
+      - name: subnet-aws-demo1
+      - name: subnet-aws-demo2
+  writeConnectionSecretToRef:
+    name: kubeconfig-eks2
+    namespace: crossplane-system
+  publishConnectionDetailsTo:
+    name: kubeconfig-eks2
+    configRef:
+      name: default
+  providerConfigRef:
+    name: aws-config

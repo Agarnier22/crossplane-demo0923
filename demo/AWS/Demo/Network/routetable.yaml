@@ -1,0 +1,21 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: RouteTable
+metadata:
+  name: rt-aws-demo
+  annotations:
+    crossplane.io/paused: "false"
+  labels:
+    provider: AWS
+spec:
+  forProvider:
+    region: eu-west-1
+    tags:
+      Name: rt-aws-demo
+      creator: aga
+    vpcIdRef:
+      name: vpc-aws-demo
+    tags: 
+      Name: rt-aws-demo
+      creator: aga
+  providerConfigRef:
+    name: aws-config

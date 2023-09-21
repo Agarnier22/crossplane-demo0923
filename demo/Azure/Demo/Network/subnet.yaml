@@ -1,0 +1,16 @@
+apiVersion: network.azure.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: subnet-azure-demo
+  labels:
+    provider: Azure
+    resourcetype: subnet
+spec:
+  forProvider:
+    resourceGroupNameRef:
+      name: resourcegroup-azure-demo
+    virtualNetworkNameRef:
+      name: virtualnetwork-azure-demo
+    addressPrefixes: [10.30.1.0/24]
+  providerConfigRef:
+    name: azure-config

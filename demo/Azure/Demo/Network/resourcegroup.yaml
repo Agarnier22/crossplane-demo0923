@@ -1,0 +1,12 @@
+apiVersion: azure.upbound.io/v1beta1
+kind: ResourceGroup
+metadata:
+  name: resourcegroup-azure-demo
+  labels:
+    provider: Azure
+    resourcetype: resourcegroup
+spec:
+  forProvider:
+    location: North Europe
+  providerConfigRef:
+    name: azure-config

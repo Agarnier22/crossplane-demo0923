@@ -1,0 +1,14 @@
+apiVersion: azure.upbound.io/v1beta1
+metadata:
+  name: azure-config
+  labels:
+    provider: Azure
+    resourcetype: providerconfig
+kind: ProviderConfig
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: azure-creds
+      key: creds

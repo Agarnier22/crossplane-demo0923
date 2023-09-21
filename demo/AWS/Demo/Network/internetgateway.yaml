@@ -1,0 +1,21 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: InternetGateway
+metadata:
+  name: routegw-aws-demo
+  annotations:
+    crossplane.io/paused: "false"
+  labels:
+    provider: AWS
+spec:
+  forProvider:
+    region: eu-west-1
+    tags:
+      Name: routegw
+      creator: aga
+    vpcIdRef:
+      name: vpc-aws-demo
+    tags:
+      Name: routegw-aws-demo
+      creator: aga
+  providerConfigRef:
+    name: aws-config

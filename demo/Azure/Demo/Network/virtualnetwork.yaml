@@ -1,0 +1,20 @@
+apiVersion: network.azure.upbound.io/v1beta1
+kind: VirtualNetwork
+metadata:
+  name: virtualnetwork-azure-demo
+  labels:
+    provider: Azure
+    resourcetype: network
+spec:
+  forProvider:
+    resourceGroupNameRef:
+      name: resourcegroup-azure-demo
+    location: North Europe
+    addressSpace:
+        - 10.30.0.0/16
+    tags:
+        Name: virtualnetwork-azure-demo
+        creator : aga
+        managed-by : crossplane
+  providerConfigRef:
+    name: azure-config

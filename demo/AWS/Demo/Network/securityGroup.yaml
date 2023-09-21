@@ -1,0 +1,22 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroup
+metadata:
+  name: securitygroup-aws-demo
+  annotations:
+    crossplane.io/paused: "false"
+  labels:
+    provider: AWS
+    resourcetype: securitygroup
+spec:
+  forProvider:
+    region: eu-west-1
+    vpcIdRef:
+      name: vpc-aws-demo  
+    name: securitygroup-aws-demo
+    description: securitygroup for crossplane demo
+    tags:
+      Name: securitygroup-aws-demo
+      creator: aga
+      managed-by: crossplane
+  providerConfigRef:
+    name: aws-config

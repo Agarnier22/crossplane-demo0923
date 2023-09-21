@@ -1,0 +1,51 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: subnet-aws-demo1
+  annotations:
+    crossplane.io/paused: "false"
+  labels:
+    provider: AWS
+    resourcetype: subnet
+spec:
+  forProvider:
+    region: eu-west-1
+    availabilityZone: eu-west-1b
+    cidrBlock: 10.0.1.0/24
+    vpcIdRef:
+      name: vpc-aws-demo
+    mapPublicIpOnLaunch: true
+    tags:
+      Name: subnet-aws-demo1
+      creator: aga
+      managed-by: crossplane
+      "kubernetes.io/role/elb": "1"
+  providerConfigRef:
+    name: aws-config
+
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Subnet
+metadata:
+  name: subnet-aws-demo2
+  annotations:
+    crossplane.io/paused: "false"
+    crossplane.io/external-name: subnet-aws-demo2
+  labels:
+    provider: AWS
+    resourcetype: subnet
+spec:
+  forProvider:
+    region: eu-west-1
+    availabilityZone: eu-west-1a
+    cidrBlock: 10.0.2.0/24
+    vpcIdRef:
+      name: vpc-aws-demo
+    mapPublicIpOnLaunch: true
+    tags:
+      Name: subnet-aws-demo2
+      creator: aga
+      managed-by: crossplane
+      "kubernetes.io/role/elb": "1"
+  providerConfigRef:
+    name: aws-config

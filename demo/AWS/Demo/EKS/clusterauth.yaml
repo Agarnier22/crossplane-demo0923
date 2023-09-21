@@ -1,0 +1,18 @@
+apiVersion: eks.aws.upbound.io/v1beta1
+kind: ClusterAuth
+metadata:
+  annotations:
+    meta.upbound.io/example-id: eks/v1beta1/cluster
+  name: auth
+  labels:
+    provider: AWS
+spec:
+  forProvider:
+    clusterNameRef:
+      name: cluster-aws-demo
+    region: eu-west-1
+  writeConnectionSecretToRef:
+    name: kubeconfig-eks
+    namespace:  crossplane-system
+  providerConfigRef:
+    name: aws-config

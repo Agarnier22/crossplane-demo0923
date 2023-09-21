@@ -1,0 +1,36 @@
+apiVersion: containerservice.azure.upbound.io/v1beta1
+kind: KubernetesCluster
+metadata:
+  name: aks-demo
+  annotations:
+     crossplane.io/paused: "false"
+  labels:
+    provider: Azure
+    resourcetype: cluster
+spec:
+  forProvider:
+    defaultNodePool:
+    - name: default
+      nodeCount: 1
+      vmSize: Standard_D2_v2
+      vnetSubnetIdRef:
+        name: subnet-azure-demo
+    dnsPrefix: aksdnsprefix-demo
+    identity:
+    - type: SystemAssigned
+    location: North Europe
+    resourceGroupNameRef:
+      name: resourcegroup-azure-demo
+    tags:
+      Environment: Dev
+
+  # writeConnectionSecretToRef:
+  #   name: kubeconfig-aks
+  #   namespace: crossplane-system
+  publishConnectionDetailsTo:
+    name: generated-kubeconfig-aks
+    configRef:
+      name: default
+
+  providerConfigRef:
+    name: azure-config
